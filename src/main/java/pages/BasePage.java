@@ -21,61 +21,37 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    /**
-     * Navigate to a specific URL
-     */
     public void load(String url) {
         driver.get(url);
     }
 
-    /**
-     * Wait for element to be visible
-     */
     protected void waitForElementToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    /**
-     * Wait for element to be clickable
-     */
     protected void waitForElementToBeClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    /**
-     * Scroll element into view using JavaScript
-     */
     protected void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
     }
 
-    /**
-     * Click element using JavaScript (useful for stubborn elements)
-     */
     protected void jsClick(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
-    /**
-     * Clear and type into input field
-     */
     protected void clearAndType(WebElement element, String text) {
         waitForElementToBeVisible(element);
         element.clear();
         element.sendKeys(text);
     }
 
-    /**
-     * Get text from element after waiting for visibility
-     */
     protected String getTextFromElement(WebElement element) {
         waitForElementToBeVisible(element);
         return element.getText();
     }
 
-    /**
-     * Check if element is displayed
-     */
     protected boolean isElementDisplayed(WebElement element) {
         try {
             waitForElementToBeVisible(element);
