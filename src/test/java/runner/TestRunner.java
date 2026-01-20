@@ -1,38 +1,23 @@
-package runner;
-
-import org.junit.runner.RunWith;
+package  runner;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
 
-/**
- * TestRunner class to execute Cucumber BDD tests
- */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features",
+        features = "src/test/resources/feature",
         glue = {"Steps", "Hooks"},
-
-        // Tags for filtering scenarios
         tags = "@smoke",
 
-        // Report plugins
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports/cucumber-html-report.html",
+                "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json",
-                "junit:target/cucumber-reports/cucumber.xml",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+                "junit:target/cucumber-reports/cucumber.xml"
         },
 
-        // Display console output in readable format
         monochrome = true,
-
-        // Stop execution on first failure (useful for debugging)
-        // dryRun = false,
-
-        // Generate snippets for undefined steps
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class TestRunner {
-    // This class remains empty - it's just an entry point for JUnit
 }
