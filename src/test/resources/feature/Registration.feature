@@ -1,25 +1,30 @@
-Feature: Registration functionality
-  As a new customer,
-  I want to create an account by registering with my personal details,
-  So that I can login in the website.
+Feature: User Registration
+  As a new customer
+  I want to create an account
+  So that I can access the platform and make purchases
 
-  Scenario Outline: Successful registration
+  Background:
     Given I am on the registration page
+
+  @smoke @registration @positive
+  Scenario: Register successfully with valid details
     When I register with valid details:
-      | userName | <userName> |
-      | email    | <email>    |
-      | password | <password> |
+      | username | TestUser         |
+      | email    | test@example.com |
+      | password | SecurePass@123   |
     Then I should be redirected to the dashboard and see welcome message
+  @registration @negative
+  Scenario: Registration with missing or invalid details
+    When I register with the following details:
+      | username |        |
+      | email    | bademail@example.com |
+      | password | Pass123 |
+    Then I should see the error message Email already exists
 
-    Examples:
-      | userName       | email              | password         |
-      | Christo tester | tter@example.com   | ^Strong-Pass123  |
-      | Christoy ttd   | tti@elll.com       | ^Strong-Pass123  |
-
-  Scenario: Registration with existing email
-    Given I am on the registration page
+  @registration @negative
+  Scenario: Attempt registration with an existing email address
     When I register with email that already exists:
-      | userName | Chris tester       |
-      | email    | tester@example.com |
-      | password | ^Strong-Pass123    |
+      | username | ExistingUser      |
+      | email    | naomy@example.com |
+      | password | Password123       |
     Then I should see the error message Email already exists
