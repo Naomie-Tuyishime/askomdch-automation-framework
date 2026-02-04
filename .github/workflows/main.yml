@@ -14,25 +14,11 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          java-version: '17'   # or your project’s version
+          java-version: '17'  
           distribution: 'temurin'
 
-      # 3. Cache Maven dependencies (optional but speeds up builds)
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
 
       # 4. Run your BDD tests
       - name: Run BDD tests
         run: mvn clean test
 
-      # 5. Upload test results (optional, but useful)
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: target/surefire-reports
