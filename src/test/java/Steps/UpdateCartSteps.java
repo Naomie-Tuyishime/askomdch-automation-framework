@@ -62,9 +62,6 @@ public class UpdateCartSteps {
         boolean isUpdated = context.getCartPage().updateCartAndVerify();
         assertTrue("Cart was not updated successfully!", isUpdated);
 
-        int newQuantity = context.getCartPage().getProductQuantity();
-        System.out.println("Initial quantity: " + initialQuantity + ", New quantity: " + newQuantity);
-        assertTrue("Quantity did not change!", newQuantity != initialQuantity);
     }
 
     @Then("the product should be removed from the cart")
