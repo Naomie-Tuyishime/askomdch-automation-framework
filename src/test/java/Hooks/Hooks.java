@@ -21,10 +21,7 @@ public class Hooks {
 
     @Before
     public void setUp(Scenario scenario) {
-
         System.out.println("Starting Scenario: " + scenario.getName());
-
-
         WebDriver driver = context.getDriver();
     }
 

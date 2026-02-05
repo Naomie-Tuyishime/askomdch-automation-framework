@@ -44,6 +44,7 @@ public class BasePage {
     protected void clearAndType(WebElement element, String text) {
         waitForElementToBeVisible(element);
         element.clear();
+
         element.sendKeys(text);
     }
 

@@ -43,9 +43,7 @@ public class TestDataManager {
         }
         return value;
     }
-
     // ==================== USER DATA ====================
-
     public static String getValidUsername() {
         return getData("users", "valid.username");
     }
@@ -53,15 +51,12 @@ public class TestDataManager {
     public static String getValidPassword() {
         return getData("users", "valid.password");
     }
-
     public static String getValidEmail() {
         return getData("users", "valid.email");
     }
-
     public static String getInvalidUsername() {
         return getData("users", "invalid.username");
     }
-
     public static String getInvalidPassword() {
         return getData("users", "invalid.password");
     }
@@ -71,27 +66,21 @@ public class TestDataManager {
     public static String getBillingFirstName() {
         return getData("billing", "first.name");
     }
-
     public static String getBillingLastName() {
         return getData("billing", "last.name");
     }
-
     public static String getBillingEmail() {
         return getData("billing", "email");
     }
-
     public static String getBillingPhone() {
         return getData("billing", "phone");
     }
-
     public static String getBillingAddress() {
         return getData("billing", "address");
     }
-
     public static String getBillingCity() {
         return getData("billing", "city");
     }
-
     public static String getBillingZipCode() {
         return getData("billing", "zipcode");
     }
@@ -110,13 +99,10 @@ public class TestDataManager {
         billingData.put("zipcode", getBillingZipCode());
         return billingData;
     }
-
     // ==================== PRODUCT DATA ====================
-
     public static String getProductName() {
         return getData("products", "product.name");
     }
-
     public static String getProductQuantity() {
         return getData("products", "product.quantity");
     }

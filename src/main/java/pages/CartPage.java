@@ -69,18 +69,16 @@ public class CartPage extends BasePage {
     public void hoverOverCartIcon() {
         try {
             ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
-            Thread.sleep(500);
             wait.until(ExpectedConditions.presenceOfElementLocated(
                     By.cssSelector(".ast-cart-menu-wrap")
             ));
-            WebElement cartIconElement = driver.findElement(
-                    By.cssSelector(".ast-cart-menu-wrap")
-            );
+            List<WebElement> cartIcons = driver.findElements(By.cssSelector("div.ast-site-header-cart-li"));
+            WebElement cartIconElement = cartIcons.get(1);
+            ;
             ((JavascriptExecutor) driver).executeScript(
                     "arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});",
                     cartIconElement
             );
-            Thread.sleep(300);
             Actions actions = new Actions(driver);
             actions.moveToElement(cartIconElement).perform();
         } catch (Exception e) {
@@ -136,9 +134,8 @@ public class CartPage extends BasePage {
     public void decreaseProductQuantity() {
         waitForElementToBeVisible(quantityInput);
         int currentQty = getProductQuantity();
-        if (currentQty > 1) {
-            quantityInput.clear();
-            quantityInput.sendKeys(String.valueOf(currentQty - 1));
+        if (currentQty >=1) {
+            quantityInput.sendKeys(Keys.ARROW_DOWN);
         }
     }
 
@@ -158,7 +155,7 @@ public class CartPage extends BasePage {
                             By.cssSelector(".blockUI.blockOverlay")
                     ),
                     ExpectedConditions.visibilityOfElementLocated(
-                            By.cssSelector(".woocommerce-message")
+                            By.cssSelector("div.woocommerce-message")
                     )
             ));
         } catch (Exception e) {
@@ -168,9 +165,15 @@ public class CartPage extends BasePage {
     public boolean updateCartAndVerify() {
         clickUpdateCartButton();
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector(".woocommerce-message")
-            ));
+            List<WebElement> messages = wait.until(
+                    ExpectedConditions.visibilityOfAllElementsLocatedBy(
+                            By.cssSelector("div.woocommerce-message")
+
+                    )
+
+            );
+            messages.get(0);
+;
             String message = getNotificationMessage();
             return message.contains("Cart updated") || message.contains("updated");
         } catch (Exception e) {
@@ -218,7 +221,7 @@ public class CartPage extends BasePage {
 
     public void clickProceedToCheckout() {
         try {
-            WebElement checkout = wait.until(ExpectedConditions.elementToBeClickable(
+            WebElement checkout = wait.until(ExpectedConditions.visibilityOfElementLocated(
                     By.cssSelector("a.checkout-button, .wc-proceed-to-checkout a")
             ));
             scrollToElement(checkout);
@@ -230,8 +233,9 @@ public class CartPage extends BasePage {
 
     public String getNotificationMessage() {
         try {
-            waitForElementToBeVisible(notificationMessage);
-            return notificationMessage.getText();
+       List   <WebElement>messages= wait.until(ExpectedConditions.visibilityOfAllElements(notificationMessage));
+return messages.get(1).getText();
+
         } catch (Exception e) {
             return "";
         }
