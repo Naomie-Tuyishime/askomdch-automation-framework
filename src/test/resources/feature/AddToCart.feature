@@ -8,7 +8,9 @@ Feature: Shopping Cart Management
     Given I am on the product listing page
     And I click on product item for opening product detail page
     When I click on the Add to Cart button for a product
-    Then a confirmation message is displayed
+    Then I should see the product in the cart
+    And the cart page displays product details
+
 
   @cart @viewcart
   Scenario: View cart details

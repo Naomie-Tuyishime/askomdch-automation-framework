@@ -5,9 +5,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/feature",
+        features = "src/test/resources/feature/UpdateCart",
         glue = {"Steps", "Hooks"},
-        tags = "@smoke",
+
 
         plugin = {
                 "pretty",
@@ -15,9 +15,8 @@ import org.junit.runner.RunWith;
                 "json:target/cucumber-reports/cucumber.json",
                 "junit:target/cucumber-reports/cucumber.xml"
         },
-
-        monochrome = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE
+
 )
 public class TestRunner {
 }

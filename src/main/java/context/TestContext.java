@@ -6,10 +6,6 @@ import pages.AccountPage;
 import pages.CartPage;
 import pages.CheckoutPage;
 
-/**
- * TestContext manages page object instances for the test scenarios.
- * Uses non-static variables to avoid state issues between scenarios.
- */
 public class TestContext {
 
     private WebDriver driver;
@@ -21,16 +17,10 @@ public class TestContext {
         this.driver = DriverFactory.getDriver();
     }
 
-    /**
-     * Get WebDriver instance
-     */
     public WebDriver getDriver() {
         return driver;
     }
 
-    /**
-     * Get AccountPage instance (lazy initialization)
-     */
     public AccountPage getAccountPage() {
         if (accountPage == null) {
             accountPage = new AccountPage(driver);
@@ -38,9 +28,6 @@ public class TestContext {
         return accountPage;
     }
 
-    /**
-     * Get CartPage instance (lazy initialization)
-     */
     public CartPage getCartPage() {
         if (cartPage == null) {
             cartPage = new CartPage(driver);
@@ -48,9 +35,6 @@ public class TestContext {
         return cartPage;
     }
 
-    /**
-     * Get CheckoutPage instance (lazy initialization)
-     */
     public CheckoutPage getCheckoutPage() {
         if (checkoutPage == null) {
             checkoutPage = new CheckoutPage(driver);
@@ -58,9 +42,6 @@ public class TestContext {
         return checkoutPage;
     }
 
-    /**
-     * Reset all page objects (useful for cleanup between scenarios)
-     */
     public void resetPageObjects() {
         accountPage = null;
         cartPage = null;

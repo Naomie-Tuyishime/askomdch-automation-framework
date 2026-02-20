@@ -1,5 +1,8 @@
 package utils;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,6 +16,7 @@ public class TestDataManager {
 
     private static final String TEST_DATA_PATH = "src/test/resources/testdata/";
     private static Map<String, Properties> dataFiles = new HashMap<>();
+    private static ExtentReports extent;
 
     /**
      * Load test data file
@@ -43,9 +47,7 @@ public class TestDataManager {
         }
         return value;
     }
-
     // ==================== USER DATA ====================
-
     public static String getValidUsername() {
         return getData("users", "valid.username");
     }
@@ -53,15 +55,12 @@ public class TestDataManager {
     public static String getValidPassword() {
         return getData("users", "valid.password");
     }
-
     public static String getValidEmail() {
         return getData("users", "valid.email");
     }
-
     public static String getInvalidUsername() {
         return getData("users", "invalid.username");
     }
-
     public static String getInvalidPassword() {
         return getData("users", "invalid.password");
     }
@@ -71,27 +70,21 @@ public class TestDataManager {
     public static String getBillingFirstName() {
         return getData("billing", "first.name");
     }
-
     public static String getBillingLastName() {
         return getData("billing", "last.name");
     }
-
     public static String getBillingEmail() {
         return getData("billing", "email");
     }
-
     public static String getBillingPhone() {
         return getData("billing", "phone");
     }
-
     public static String getBillingAddress() {
         return getData("billing", "address");
     }
-
     public static String getBillingCity() {
         return getData("billing", "city");
     }
-
     public static String getBillingZipCode() {
         return getData("billing", "zipcode");
     }
@@ -110,14 +103,23 @@ public class TestDataManager {
         billingData.put("zipcode", getBillingZipCode());
         return billingData;
     }
-
     // ==================== PRODUCT DATA ====================
-
     public static String getProductName() {
         return getData("products", "product.name");
     }
-
     public static String getProductQuantity() {
         return getData("products", "product.quantity");
     }
+    public static ExtentReports getInstance() {
+        if (extent == null) {
+            ExtentSparkReporter spark = new ExtentSparkReporter("target/ExtentReport.html");
+            spark.config().setReportName("BDD Automation Report");
+            spark.config().setDocumentTitle("Test Execution Report");
+
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
+        }
+        return extent;
+    }
+
 }

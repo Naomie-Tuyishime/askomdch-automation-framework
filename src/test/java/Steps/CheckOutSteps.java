@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebElement;
 import utils.ConfigReader;
 
 import java.util.Map;
@@ -54,6 +55,7 @@ public class CheckOutSteps {
     @When("I click the Proceed to checkout button")
     public void i_click_the_proceed_to_checkout_button() {
         context.getCartPage().clickProceedToCheckout();
+
     }
 
     @Then("I am redirected to the checkout page")

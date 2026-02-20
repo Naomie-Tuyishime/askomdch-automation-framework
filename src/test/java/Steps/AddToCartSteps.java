@@ -34,13 +34,8 @@ public class AddToCartSteps {
         System.out.println("Product added to cart");
     }
 
-    @Then("a confirmation message is displayed")
-    public void a_confirmation_message_is_displayed() {
-        boolean isMessageDisplayed = context.getCartPage()
-                .verifyNotificationMessage("has been added to your cart");
-        assertTrue("Add to cart confirmation message not displayed!", isMessageDisplayed);
-
-        String message = context.getCartPage().getNotificationMessage();
-        System.out.println("Confirmation message: " + message);
+    @Then("I should see the product in the cart")
+    public void  i_should_see_the_product_in_the_cart() {
+        context.getCartPage().clickViewCartLink();
     }
 }

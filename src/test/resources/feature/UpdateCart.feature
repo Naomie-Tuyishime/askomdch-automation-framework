@@ -1,3 +1,4 @@
+@Updates
 Feature: Update shopping cart
   As a customer on the AskOm online shopping website
   I want to manage products in my cart

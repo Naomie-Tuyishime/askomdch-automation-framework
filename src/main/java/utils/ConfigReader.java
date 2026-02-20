@@ -4,9 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-/**
- * ConfigReader handles reading configuration properties from config.properties file
- */
 public class ConfigReader {
 
     private static Properties properties;
@@ -21,9 +18,7 @@ public class ConfigReader {
         }
     }
 
-    /**
-     * Load properties from config file
-     */
+
     private static void loadProperties() throws IOException {
         properties = new Properties();
         FileInputStream fileInputStream = new FileInputStream(CONFIG_FILE_PATH);
