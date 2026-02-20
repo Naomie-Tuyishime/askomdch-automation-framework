@@ -12,11 +12,11 @@ public class DriverFactory {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
 
-            // Detect if running in GitHub Actions/Pipeline
+
             boolean isCI = "true".equalsIgnoreCase(System.getenv("CI"));
 
             if (isCI) {
-                // Mandatory settings for Pipeline stability
+
                 options.addArguments("--headless=new");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
