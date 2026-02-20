@@ -1,0 +1,35 @@
+name: Selenium BDD Review Tests
+
+on:
+  push:
+    # This will now trigger on 'review', 'main', or any other branch you push to
+    branches: [ "**" ] 
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run Tests
+        env:
+          CI: "true" # Triggers the headless logic in your DriverFactory
+        run: mvn clean test
+
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: target/surefire-reports/ # Or your specific cucumber report path
