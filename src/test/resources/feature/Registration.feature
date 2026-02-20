@@ -16,7 +16,7 @@ Feature: User Registration
   @registration @negative
   Scenario: Registration with missing or invalid details
     When I register with the following details:
-      | username |        |
+      | username |       |
       | email    | bademail@example.com |
       | password | Pass123 |
     Then I should see the error message Email already exists

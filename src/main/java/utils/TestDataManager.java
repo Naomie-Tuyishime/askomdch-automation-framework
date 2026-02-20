@@ -1,5 +1,8 @@
 package utils;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,6 +16,7 @@ public class TestDataManager {
 
     private static final String TEST_DATA_PATH = "src/test/resources/testdata/";
     private static Map<String, Properties> dataFiles = new HashMap<>();
+    private static ExtentReports extent;
 
     /**
      * Load test data file
@@ -106,4 +110,16 @@ public class TestDataManager {
     public static String getProductQuantity() {
         return getData("products", "product.quantity");
     }
+    public static ExtentReports getInstance() {
+        if (extent == null) {
+            ExtentSparkReporter spark = new ExtentSparkReporter("target/ExtentReport.html");
+            spark.config().setReportName("BDD Automation Report");
+            spark.config().setDocumentTitle("Test Execution Report");
+
+            extent = new ExtentReports();
+            extent.attachReporter(spark);
+        }
+        return extent;
+    }
+
 }

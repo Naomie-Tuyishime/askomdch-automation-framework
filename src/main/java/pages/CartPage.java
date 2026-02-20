@@ -155,7 +155,7 @@ public class CartPage extends BasePage {
                             By.cssSelector(".blockUI.blockOverlay")
                     ),
                     ExpectedConditions.visibilityOfElementLocated(
-                            By.cssSelector("div.woocommerce-message")
+                            By.cssSelector(".woocommerce-message")
                     )
             ));
         } catch (Exception e) {
@@ -167,7 +167,7 @@ public class CartPage extends BasePage {
         try {
             List<WebElement> messages = wait.until(
                     ExpectedConditions.visibilityOfAllElementsLocatedBy(
-                            By.cssSelector("div.woocommerce-message")
+                            By.cssSelector(".woocommerce-message")
 
                     )
 

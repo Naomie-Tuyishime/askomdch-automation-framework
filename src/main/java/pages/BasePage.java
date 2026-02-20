@@ -42,10 +42,13 @@ public class BasePage {
     }
 
     protected void clearAndType(WebElement element, String text) {
+
         waitForElementToBeVisible(element);
         element.clear();
+        if (text != null) {
+            element.sendKeys(text);
+        }
 
-        element.sendKeys(text);
     }
 
     protected String getTextFromElement(WebElement element) {
